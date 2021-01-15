@@ -11,32 +11,42 @@ const WorkoutSchema = new Schema ({
             type: {
                 type: String, 
                 trim: true,
-                required: "No Empty, No Bueno"
+                required: true,
+                enum: ["cardio", "resistance"],
             }, 
             name: {
                 type: String, 
                 trim: true,
-                required: "No Empty, No Bueno"
+                required: true
             },
             duration: {
                 type: String, 
                 trim: true,
-                required: "No Empty, No Bueno"
+                required: true
             },
             weight: {
-                type: Number
+                type: Number,
+                min: 1
             },
             reps: {
-                type: Number
+                type: Number,
+                min: 1
             },
             sets: {
-                type: Number
+                type: Number,
+                min: 1
             },
             distance: {
-                type: Number
-            }
+                type: Number,
+                min: 1
+            },
+        }]
+    },
+        {
+        toJSON: {
+            virtuals: true
         }
-    ]
+        
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
